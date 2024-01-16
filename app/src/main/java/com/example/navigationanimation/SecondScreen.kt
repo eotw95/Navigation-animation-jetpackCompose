@@ -10,7 +10,9 @@ fun SecondScreen(
     onClick: () -> Unit
 ) {
     Column {
-        Text(text = "Second Screen")
+        repeat(30) {
+            Text(text = "Second Screen")
+        }
         Button(
             onClick = onClick
         ) {

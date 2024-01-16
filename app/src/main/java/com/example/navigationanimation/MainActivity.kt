@@ -3,6 +3,11 @@ package com.example.navigationanimation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -35,7 +40,13 @@ class MainActivity : ComponentActivity() {
                                     onClick = { navController.navigate("second") }
                                 )
                             }
-                            composable("second") {
+                            composable(
+                                route = "second",
+                                enterTransition = { slideInHorizontally(initialOffsetX = { fullWidth -> fullWidth / 2 }, animationSpec = tween()) },
+                                exitTransition = { slideOutHorizontally(targetOffsetX = { fullWidth -> fullWidth / 2 }, animationSpec = tween()) },
+                                popEnterTransition = { slideInVertically(initialOffsetY = { fullHeight -> fullHeight / 2 }, animationSpec = tween()) },
+                                popExitTransition = { slideOutVertically(targetOffsetY = { fullHeight -> fullHeight / 2 }, animationSpec = tween()) },
+                            ) {
                                 SecondScreen(
                                     onClick = { navController.navigateUp() }
                                 )

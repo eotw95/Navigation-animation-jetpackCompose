@@ -10,7 +10,9 @@ fun FirstScreen(
     onClick: () -> Unit
 ) {
     Column {
-        Text(text = "First Screen")
+        repeat(30) {
+            Text(text = "First Screen")
+        }
         Button(
             onClick = onClick
         ) {
